@@ -1,0 +1,14 @@
+{
+  "name": "helix-framework-ai",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node backend/server.mjs",
+    "start": "node backend/server.mjs",
+    "check": "node backend/server.mjs --check"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
