@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helix Framework AI</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <div class="brand-lockup">
+          <div class="brand-logo-card">
+            <img src="/assets/helix-logo.png" alt="Helix Framework AI logo" />
+          </div>
+          <div>
+            <p class="eyebrow">Think Analyze Elevate</p>
+            <h1>Helix Framework AI</h1>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="Tools">
+          <button class="nav-item active" data-view="dashboard" type="button">
+            <span class="nav-icon" aria-hidden="true">D</span>
+            Dashboard
+          </button>
+          <button class="nav-item" data-view="brain" type="button">
+            <span class="nav-icon" aria-hidden="true">B</span>
+            Department Brain
+          </button>
+          <button class="nav-item" data-view="consultant" type="button">
+            <span class="nav-icon" aria-hidden="true">C</span>
+            AI Consultant
+          </button>
+          <button class="nav-item" data-view="aligner" type="button">
+            <span class="nav-icon" aria-hidden="true">A</span>
+            Assignment Aligner
+          </button>
+          <button class="nav-item" data-view="plc" type="button">
+            <span class="nav-icon" aria-hidden="true">P</span>
+            PLC Insights
+          </button>
+        </nav>
+
+        <div class="status-panel">
+          <span class="status-dot" id="backendDot" aria-hidden="true"></span>
+          <div>
+            <p class="status-label">Backend</p>
+            <p id="backendStatus">Checking connection</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <section class="topbar" aria-label="Workspace summary">
+          <div>
+            <p class="eyebrow">Helix framework workspace</p>
+            <h2 id="viewTitle">Dashboard</h2>
+          </div>
+          <div class="topbar-metrics" aria-label="Current metrics">
+            <div>
+              <span id="artifactCount">0</span>
+              <small>Artifacts</small>
+            </div>
+            <div>
+              <span id="avgScore">--</span>
+              <small>Avg score</small>
+            </div>
+            <div>
+              <span id="frameworkSignal">Ready</span>
+              <small>Framework</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="view active" id="dashboard" data-title="Dashboard">
+          <div class="dashboard-grid">
+            <section class="hero-panel panel wide-panel">
+              <div>
+                <p class="eyebrow">Vertical scientific reasoning framework</p>
+                <h3>Make framework alignment visible across an entire department.</h3>
+                <p>Upload department artifacts, course documents, assignments, and projects. Helix rates each upload against Measurement, Data Analysis, and Communication in Science while preserving local rubric scoring and AI optionality.</p>
+                <div class="hero-actions">
+                  <button class="primary-button" type="button" data-view-link="brain">Upload documents</button>
+                  <button class="ghost-button" type="button" data-view-link="plc">Launch PLC cycle</button>
+                </div>
+              </div>
+              <aside class="readiness-card" aria-label="Readiness summary">
+                <span>Department readiness</span>
+                <strong id="readinessSignal">Live</strong>
+                <small>Artifacts and ratings update this workspace as teachers upload evidence.</small>
+              </aside>
+            </section>
+
+            <section class="panel wide-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Operating picture</p>
+                  <h3>Framework alignment</h3>
+                </div>
+                <button class="ghost-button" type="button" data-view-link="brain">Add artifact</button>
+              </div>
+              <div class="domain-grid">
+                <article class="domain-tile measurement">
+                  <span>Measurement</span>
+                  <strong id="measurementSignal">No artifacts yet</strong>
+                </article>
+                <article class="domain-tile analysis">
+                  <span>Data Analysis</span>
+                  <strong id="analysisSignal">No artifacts yet</strong>
+                </article>
+                <article class="domain-tile communication">
+                  <span>Communication</span>
+                  <strong id="communicationSignal">No artifacts yet</strong>
+                </article>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading compact">
+                <div>
+                  <p class="eyebrow">Latest recommendations</p>
+                  <h3>Next moves</h3>
+                </div>
+              </div>
+              <ul class="compact-list" id="recommendationPreview">
+                <li>Use the Consultant tab to generate recommendations.</li>
+              </ul>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading compact">
+                <div>
+                  <p class="eyebrow">Assignment alignment</p>
+                  <h3>Recent scores</h3>
+                </div>
+              </div>
+              <div id="scorePreview" class="empty-state">Upload an assignment to see scores.</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="brain" data-title="Department Brain">
+          <div class="tool-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Framework comparison</p>
+                  <h3>Upload teacher documents</h3>
+                </div>
+              </div>
+              <form id="brainForm" class="tool-form">
+                <div class="field-grid">
+                  <label>
+                    <span>Rating scope</span>
+                    <select id="brainScope">
+                      <option value="department">Department</option>
+                      <option value="course">Course</option>
+                      <option value="assignment">Assignment/project</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Grade band</span>
+                    <select id="brainGradeBand">
+                      <option value="auto">Auto-detect</option>
+                      <option value="freshman">Freshman / 9th</option>
+                      <option value="sophomore">Sophomore / 10th</option>
+                      <option value="upper">Junior/Senior</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Course or team</span>
+                    <input id="brainCourse" value="Science Department" />
+                  </label>
+                </div>
+                <label class="drop-zone">
+                  <input id="brainFiles" type="file" multiple />
+                  <span class="drop-title">Select syllabi, labs, projects, rubrics, PLC notes, or course maps</span>
+                  <span class="drop-meta">Uploads are compared to the Helix Framework AI domains and grade-band expectations.</span>
+                </label>
+                <button class="primary-button" type="submit">Rate against framework</button>
+              </form>
+            </section>
+            <section class="results-panel" aria-live="polite">
+              <div class="results-heading">
+                <h3>Framework ratings</h3>
+                <span id="brainCount">0 processed</span>
+              </div>
+              <div id="brainResults" class="result-stack empty-state">No artifact insights yet.</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="consultant" data-title="AI Consultant">
+          <div class="tool-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Reflection and scoring</p>
+                  <h3>Generate recommendations</h3>
+                </div>
+              </div>
+              <form id="consultantForm" class="tool-form">
+                <label>
+                  <span>Department reflection</span>
+                  <textarea id="reflection" rows="8">Our department feels isolated between courses. Students often collect data, but they struggle to interpret graphs and write evidence-based conclusions. We need to align on vocabulary and boost student ACT science reasoning.</textarea>
+                </label>
+                <div class="slider-grid">
+                  <label>
+                    <span>Vocabulary</span>
+                    <input id="scoreVocabulary" type="range" min="1" max="5" value="2" />
+                  </label>
+                  <label>
+                    <span>Alignment</span>
+                    <input id="scoreAlignment" type="range" min="1" max="5" value="2" />
+                  </label>
+                  <label>
+                    <span>Assessments</span>
+                    <input id="scoreAssessments" type="range" min="1" max="5" value="3" />
+                  </label>
+                  <label>
+                    <span>ACT Transfer</span>
+                    <input id="scoreAct" type="range" min="1" max="5" value="1" />
+                  </label>
+                </div>
+                <button class="primary-button" type="submit">Generate plan</button>
+              </form>
+            </section>
+            <section class="results-panel" aria-live="polite">
+              <div class="results-heading">
+                <h3>Recommended actions</h3>
+                <span id="consultantCount">Ready</span>
+              </div>
+              <div id="consultantResults" class="result-stack empty-state">Recommendations will appear here.</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="aligner" data-title="Assignment Aligner">
+          <div class="tool-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Assignment review</p>
+                  <h3>Score alignment</h3>
+                </div>
+              </div>
+              <form id="alignerForm" class="tool-form">
+                <div class="field-grid">
+                  <label>
+                    <span>Course</span>
+                    <input id="assignmentCourse" value="Biology" />
+                  </label>
+                  <label>
+                    <span>Grade band</span>
+                    <select id="assignmentGradeBand">
+                      <option value="auto">Auto-detect</option>
+                      <option value="freshman">Freshman / 9th</option>
+                      <option value="sophomore">Sophomore / 10th</option>
+                      <option value="upper">Junior/Senior</option>
+                    </select>
+                  </label>
+                </div>
+                <label class="drop-zone">
+                  <input id="assignmentFiles" type="file" multiple />
+                  <span class="drop-title">Select assignments or labs</span>
+                  <span class="drop-meta">Assignments and projects are rated against the framework domains, grade progression, and ACT transfer goals.</span>
+                </label>
+                <button class="primary-button" type="submit">Rate assignments</button>
+              </form>
+            </section>
+            <section class="results-panel" aria-live="polite">
+              <div class="results-heading">
+                <h3>Alignment scores</h3>
+                <span id="alignerCount">0 scored</span>
+              </div>
+              <div id="alignerResults" class="result-stack empty-state">No assignment scores yet.</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="plc" data-title="PLC Insights">
+          <div class="tool-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">PLC planning</p>
+                  <h3>Find the next action</h3>
+                </div>
+              </div>
+              <form id="plcForm" class="tool-form">
+                <div class="field-grid">
+                  <label>
+                    <span>Course</span>
+                    <select id="course">
+                      <option>Biology</option>
+                      <option>Chemistry</option>
+                      <option>Physics</option>
+                      <option>Environmental Science</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Grade</span>
+                    <select id="grade">
+                      <option>9th</option>
+                      <option>10th</option>
+                      <option>11th</option>
+                      <option>12th</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Domain</span>
+                    <select id="domain">
+                      <option>Data Analysis</option>
+                      <option>Measurement</option>
+                      <option>Communication</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Skill</span>
+                    <input id="skill" value="Variable Identification" />
+                  </label>
+                </div>
+                <button class="primary-button" type="submit">Get insight</button>
+              </form>
+            </section>
+            <section class="results-panel" aria-live="polite">
+              <div class="results-heading">
+                <h3>PLC action brief</h3>
+                <span id="plcCount">Ready</span>
+              </div>
+              <div id="plcResults" class="result-stack empty-state">Submit a PLC focus to see the action brief.</div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="toastTemplate">
+      <div class="toast" role="status"></div>
+    </template>
+
+    <div id="toastRegion" class="toast-region" aria-live="polite"></div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
