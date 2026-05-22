@@ -1,4 +1,5 @@
-.env
-node_modules/
-netlify/
-*.log
+node_modules
+.git
+*.md
+!README.md
+.env.example
